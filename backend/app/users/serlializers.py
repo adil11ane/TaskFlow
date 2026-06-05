@@ -54,16 +54,26 @@ class EmailTokenObtainSerializer(serializers.Serializer):
         }
 
 
-# serializer for sing up
+# serializer for sing up перепишу
+class EmailValidationSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    code = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ["id", "email", "password", "first_name", "last_name"]
+        fields = ["id", "email", "code", "password", "first_name", "last_name"]
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)  # type: ignore[attr-defined]
+        validated_data.pop("code", None)
+        return user.objects.create_user(**validated_data)    # type: ignore[attr-defined]
+    
+
+
+
 
 
 # serializer-helper for comment,project,tasks
