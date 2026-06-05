@@ -2,6 +2,7 @@ import string
 import secrets
 from django.core.mail import send_mail
 from django.core.cache import cache
+from django.conf import settings
 
 
 
@@ -27,7 +28,7 @@ class RegistWithCodeFromEmailUseCase():
         send_mail(
             'Your confirmation code',
             f'Your confirmation code is {code}',
-            'example@example.com',
+            settings.DEFAULT_FROM_EMAIL,
             [email],
         )
         

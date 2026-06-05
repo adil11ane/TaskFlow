@@ -174,3 +174,7 @@ CACHES = {
         },
     }
 }
+
+
+DEFAULT_FROM_EMAIL= os.getenv("DEFAULT_FROM_EMAIL")
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
