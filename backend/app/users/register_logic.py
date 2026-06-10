@@ -12,7 +12,7 @@ class RegistWithCodeFromEmailUseCase():
         # 3 send the code to email
         self._send_code_to_email(email, generated_code)
         # 4 save the code to cache with email as key
-        cache.set(f"email_confirmation_code_{email}", generated_code, timeout=120)
+        cache.set(f"email_confirmation_code_{email}", generated_code, timeout=300)
         
     
 
@@ -31,4 +31,3 @@ class RegistWithCodeFromEmailUseCase():
             settings.DEFAULT_FROM_EMAIL,
             [email],
         )
-        
